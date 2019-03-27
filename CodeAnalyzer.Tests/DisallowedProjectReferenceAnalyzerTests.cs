@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
-using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using VerifyCS = Microsoft.CodeAnalysis.CSharp.Testing.NUnit.CodeFixVerifier<CodeAnalyzer.DisallowedProjectReferenceAnalyzer, Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
-using VerifyVB = Microsoft.CodeAnalysis.CSharp.Testing.NUnit.CodeFixVerifier<CodeAnalyzer.DisallowedProjectReferenceAnalyzer, Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
+using VerifyCS = CodeAnalyzer.Tests.CSharpCodeFixVerifier<CodeAnalyzer.DisallowedProjectReferenceAnalyzer, Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
+using VerifyVB = CodeAnalyzer.Tests.VisualBasicCodeFixVerifier<CodeAnalyzer.DisallowedProjectReferenceAnalyzer, Microsoft.CodeAnalysis.Testing.EmptyCodeFixProvider>;
 
 namespace CodeAnalyzer.Tests
 {
@@ -28,7 +27,7 @@ namespace CodeAnalyzer.Tests
                 }
             }";
 
-            var test = new Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<DisallowedProjectReferenceAnalyzer, EmptyCodeFixProvider, NUnitVerifier>
+            var test = new VerifyCS.Test
             {
                 TestState =
                 {
